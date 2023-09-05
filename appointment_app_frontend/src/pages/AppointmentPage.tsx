@@ -3,9 +3,12 @@ import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css';
 import FormControl from '@mui/material/FormControl';
 import { Form } from 'react-router-dom';
+import { render } from '@react-email/render';
+import sendgrid from '@sendgrid/mail';
+import { Email } from '../../emails';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Accordion, AccordionDetails, AccordionSummary, Box, Card, FormControlLabel, Grid, InputLabel, MenuItem, Radio, RadioGroup, Typography } from '@mui/material';
+import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Card, FormControlLabel, Grid, InputLabel, MenuItem, Radio, RadioGroup, Typography } from '@mui/material';
 
 export default function AppointmentPage (){
    const [age, setAge] = React.useState('');
@@ -13,6 +16,21 @@ export default function AppointmentPage (){
    const handleChange = (event: SelectChangeEvent) => {
      setAge(event.target.value as string);
    };
+
+   function handleEmail(){
+      sendgrid.setApiKey(process.env.SENDGRID_API_KEY);
+
+      const emailHtml = render(<Email url="https://example.com" />);
+
+      const options = {
+      from: 'you@example.com',
+      to: 'user@gmail.com',
+      subject: 'hello world',
+      html: emailHtml,
+      };
+
+      sendgrid.send(options);
+   }
  return(
    <>
       
@@ -53,6 +71,7 @@ export default function AppointmentPage (){
                </Grid>
             </Grid>
          </FormControl>
+         <Button onClick={}></Button>
       </Box>
    </>
  );
