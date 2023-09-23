@@ -2,6 +2,7 @@
   "name": "appointment_app_frontend",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://nitsua28.github.io/virtual_golf_appointment_app/",
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
@@ -15,6 +16,7 @@
     "@types/node": "^16.18.47",
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
+    "gh-pages": "^6.0.0",
     "react": "^18.2.0",
     "react-calendar": "^4.6.0",
     "react-dom": "^18.2.0",
@@ -31,7 +33,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "email": "email dev"
+    "email": "email dev",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
